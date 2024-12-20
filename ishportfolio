@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ish.sln Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-shadow: 2px 2px #000000;
+            overflow: hidden;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                            url('https://ibb.co/5MJ514n');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            background-color: rgba(10, 10, 10, 0.85);
+            border: 2px solid #ff00ff;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+            animation: float 3s ease-in-out infinite, containerRainbow 5s linear infinite;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes containerRainbow {
+            0% { border-color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+            20% { border-color: #ff9900; box-shadow: 0 0 20px rgba(255, 153, 0, 0.3); }
+            40% { border-color: #33cc33; box-shadow: 0 0 20px rgba(51, 204, 51, 0.3); }
+            60% { border-color: #3399ff; box-shadow: 0 0 20px rgba(51, 153, 255, 0.3); }
+            80% { border-color: #cc33ff; box-shadow: 0 0 20px rgba(204, 51, 255, 0.3); }
+            100% { border-color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            animation: fall linear infinite, snowflakeRainbow 5s linear infinite;
+            font-size: 1.2em;
+            text-shadow: 0 0 8px currentColor;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes snowflakeRainbow {
+            0% { color: #ff0000; }
+            20% { color: #ff9900; }
+            40% { color: #33cc33; }
+            60% { color: #3399ff; }
+            80% { color: #cc33ff; }
+            100% { color: #ff0000; }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff0000;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.5s;
+            animation: glitch 5s linear infinite, rainbow 5s linear infinite;
+            text-shadow: 2px 2px #00ff00, -2px -2px #0000ff;
+        }
+
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px,0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px,0) skew(0deg);
+            }
+            62% {
+                transform: translate(0,0) skew(5deg); 
+            }
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            20% { color: #ff9900; }
+            40% { color: #33cc33; }
+            60% { color: #3399ff; }
+            80% { color: #cc33ff; }
+            100% { color: #ff0000; }
+        }
+
+        .skills, .projects {
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .skills span, .projects span {
+            display: inline-block;
+            margin: 1rem;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid;
+            border-radius: 5px;
+            animation: skillsRainbow 5s linear infinite;
+            position: relative;
+        }
+
+        .skill-description, .project-description {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            width: 400px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 100;
+            border: 1px solid currentColor;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .skills span:hover .skill-description,
+        .projects span:hover .project-description {
+            visibility: visible;
+            opacity: 1;
+            bottom: 120%;
+        }
+
+        @keyframes skillsRainbow {
+            0% { border-color: #ff0000; }
+            20% { border-color: #ff9900; }
+            40% { border-color: #33cc33; }
+            60% { border-color: #3399ff; }
+            80% { border-color: #cc33ff; }
+            100% { border-color: #ff0000; }
+        }
+
+        .skills span:hover,
+        .projects span:hover {
+            cursor: pointer;
+            text-shadow: 0 0 10px currentColor;
+            transform: scale(1.1) rotate(-5deg);
+            letter-spacing: 3px;
+            background: rgba(255,255,255,0.2);
+            animation: skillsHoverRainbow 5s linear infinite;
+        }
+
+        @keyframes skillsHoverRainbow {
+            0% { color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+            20% { color: #ff9900; box-shadow: 0 0 20px rgba(255, 153, 0, 0.5); }
+            40% { color: #33cc33; box-shadow: 0 0 20px rgba(51, 204, 51, 0.5); }
+            60% { color: #3399ff; box-shadow: 0 0 20px rgba(51, 153, 255, 0.5); }
+            80% { color: #cc33ff; box-shadow: 0 0 20px rgba(204, 51, 255, 0.5); }
+            100% { color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+        }
+
+        .tab-buttons {
+            margin-bottom: 2rem;
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .tab-btn {
+            background-color: rgba(26, 26, 26, 0.8);
+            border: 2px solid;
+            padding: 1rem 2rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0 1rem;
+            transition: all 0.3s;
+            animation: btnRainbow 5s linear infinite;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .tab-btn::before {
+            content: "- ";
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tab-btn::after {
+            content: " -";
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tab-btn.active::before,
+        .tab-btn.active::after {
+            opacity: 1;
+        }
+
+        .tab-btn.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            animation: rainbow 5s linear infinite;
+            text-transform: uppercase;
+        }
+
+        @keyframes btnRainbow {
+            0% { border-color: #ff0000; color: #ff0000; }
+            20% { border-color: #ff9900; color: #ff9900; }
+            40% { border-color: #33cc33; color: #33cc33; }
+            60% { border-color: #3399ff; color: #3399ff; }
+            80% { border-color: #cc33ff; color: #cc33ff; }
+            100% { border-color: #ff0000; color: #ff0000; }
+        }
+
+        #viewCount {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid;
+            animation: btnRainbow 5s linear infinite;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <audio id="clickSound" src="https://www.soundjay.com/button/button-click-on.mp3" preload="auto"></audio>
+
+    <div class="tab-buttons">
+        <button class="tab-btn active" onclick="playClickAndShowTab('skills')">Skills</button>
+        <button class="tab-btn" onclick="playClickAndShowTab('projects')">Projects</button>
+    </div>
+    
+    <div class="container">
+        <h1>Ish.sln Portfolio</h1>
+        <div id="viewCount">Views: 0</div>
+
+        <div id="skills" class="tab-content active">
+            <div class="section-title">- My Skills -</div>
+            <div class="skills">
+                <span onclick="document.getElementById('clickSound').play()">Reverse Engineer
+                    <div class="skill-description">Im pretty good at reverse engineering and checking out how games or anti-cheats/anti-tampers work, or checking there insides.</div>
+                </span>
+                <span onclick="document.getElementById('clickSound').play()">C++
+                    <div class="skill-description">I love using c++, i started c++ in 2021 and i still use it today.</div>
+                </span>
+                <span onclick="document.getElementById('clickSound').play()">Luau
+                    <div class="skill-description">I have always made games in roblox which got me better at coding luau and making games.</div>
+                </span>
+                <span onclick="document.getElementById('clickSound').play()">Python
+                    <div class="skill-description">I started learning python in 2024 and im trying to get better at it..</div>
+                </span>
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content">
+            <div class="section-title">- My Projects -</div>
+            <div class="projects">
+                <span onclick="document.getElementById('clickSound').play()">Cristall.gg
+                    <div class="project-description">Cristall.gg was a roblox exploit that i made this year, it got discontinued due to the server getting nuked.</div>
+                </span>
+                <span onclick="document.getElementById('clickSound').play()">Lunar
+                    <div class="project-description">Lunar was a roblox exploit that i also made this year with a bunch of friends, it had many people in the server but sadly discontinued due to lack of motivation.</div>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // View count functionality
+        let views = localStorage.getItem('pageViews') || 0;
+        views = parseInt(views) + 1;
+        localStorage.setItem('pageViews', views);
+        document.getElementById('viewCount').textContent = `Views: ${views}`;
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            const symbols = ['❄', '❅', '❆', '✧', '✦'];
+            snowflake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+            snowflake.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 50);
+
+        function playClickAndShowTab(tabId) {
+            document.getElementById('clickSound').play();
+            showTab(tabId);
+        }
+
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`button[onclick="playClickAndShowTab('${tabId}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
